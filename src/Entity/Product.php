@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *  normalizationContext={"groups"={"category_read"}}
+ *  normalizationContext={"groups"={"product_read"}}
  * )
  * @ApiFilter(RangeFilter::class, properties={"price"})
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -23,31 +23,31 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("product_read")
+     * @Groups({"product_read", "category_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("product_read")
+     * @Groups({"category_read", "product_read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("product_read")
+     * @Groups({"category_read", "product_read"})
      */
     private $descritpion;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups("product_read")
+     * @Groups({"category_read", "product_read"})
      */
     private $price;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="products")
-     * @Groups("category_read")
+     * @Groups("product_read")
      */
     private $category;
 

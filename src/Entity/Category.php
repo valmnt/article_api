@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *  normalizationContext={"groups"={"product_read"}}
+ *  normalizationContext={"groups"={"category_read"}}
  * )
  * @ApiFilter(SearchFilter::class, properties={"name"="ipartial"})
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
@@ -23,19 +23,19 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("category_read")
+     * @Groups({"category_read", "product_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("category_read")
+     * @Groups({"category_read", "product_read"})
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="category")
-     * @Groups("product_read")
+     * @Groups("category_read")
      */
     private $products;
 
